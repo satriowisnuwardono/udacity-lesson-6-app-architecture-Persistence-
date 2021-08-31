@@ -16,4 +16,33 @@
 
 package com.example.android.trackmysleepquality.database
 
-interface SleepDatabaseDao
+import androidx.lifecycle.LiveData
+import androidx.room.*
+
+// TODO (01) Create annotated interface SleepDatabaseDao.
+@Dao
+interface SleepDatabaseDao {
+    // TODO (02) Add annotated insert() method for inserting a single SleepNight.
+    @Insert
+    fun insert(night: SleepNight)
+
+    // TODO (03) Add annotated update() method for updating a SleepNight.
+    @Update
+    fun update(night: SleepNight)
+
+    //TODO (04) Add annotated get() method taht gets the SleepNight by Key.
+    @Query("SELECT * from daily_sleep_quality_table WHERE nightId = :key")
+    fun get(key: Long): SleepNight
+
+    // TODO (05) Add annotated clear() method and query.
+    @Query("DELETE FROM daily_sleep_quality_table")
+    fun clear()
+
+    // TODO (06) Add annotated getTonight() method and query.
+    @Query("SELECT * FROM daily_sleep_quality_table ORDER BY nightId DESC LIMIT 1")
+    fun getTonight(): SleepNight?
+
+    // TODO (07) Add annotated getAllNight() method and query.
+    @Query("SELECT * from daily_sleep_quality_table ORDER BY nightId DESC")
+    fun getAllNights(): LiveData<List<SleepNight>>
+}
