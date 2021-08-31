@@ -15,3 +15,28 @@
  */
 
 package com.example.android.trackmysleepquality.database
+
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+// TODO (01) Create the SleepNight Class
+/*Pemberian nama tabel parameter
+* Pemberian nama tabel bersifat optional
+* tapi ide yang baik untuk identifikasi */
+@Entity(tableName = "daily_sleep_quality_table")
+data class SleepNight(
+    /*Pengidentifikasian data sebagai Primary Key
+    * Memiliki sebuah Primary Key adalah kewajiban */
+    @PrimaryKey(autoGenerate = true)
+    var nightId: Long = 0L,
+
+    @ColumnInfo(name = "start_time_milli")
+    var startTimeMilli: Long = System.currentTimeMillis(),
+
+    @ColumnInfo(name = "end_time_milli")
+    var endTimeMilli: Long = startTimeMilli,
+
+    @ColumnInfo(name = "quality_rating")
+    var sleepQuality: Int = -1
+)
