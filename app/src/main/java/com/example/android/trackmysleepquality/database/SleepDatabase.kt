@@ -25,13 +25,19 @@ import androidx.room.RoomDatabase
 @Database(entities = [SleepNight::class], version = 1, exportSchema = false)
 abstract class SleepDatabase : RoomDatabase() {
 
-    abstract val sleepDatabaseDao: SleepDatabase
+    // TODO (02) Declare an anstract value of type SleepNightDao.
+    abstract val sleepDatabaseDao: SleepDatabaseDao
 
+    // TODO (03) Declare a companion object.
     companion object {
+
+        // TODO (04) Declare a @Volatile INSTANCE variable.
         @Volatile
         private var INSTANCE: SleepDatabase? = null
 
+        // TODO (05) Define a getInstance() method with a synchronized block.
         fun getInstance(context: Context) : SleepDatabase {
+            // TODO (06) Inside the syncronized block.
             synchronized(this){
                 var instance = INSTANCE
 
@@ -50,13 +56,3 @@ abstract class SleepDatabase : RoomDatabase() {
         }
     }
 }
-
-// TODO (02) Declare an anstract value of type SleepNightDao.
-
-// TODO (03) Declare a companion object.
-
-// TODO (04) Declare a @Volatile INSTANCE variable.
-
-// TODO (05) Define a getInstance() method with a synchronized block.
-
-// TODO (06) Inside the syncronized block.
