@@ -53,6 +53,29 @@ class SleepTrackerViewModel(
                 formatNights(nights, application.resources)
         }
 
+        // TODO (06) Using the familiar pattern create encapsualated showSnackBarEvent variable.
+        // and doneShowingSnackBar() function.
+        val startButtonVisible = Transformations.map(tonight){
+                null == it
+        }
+
+        val stopButtonVisible = Transformations.map(tonight) {
+                null != it
+        }
+
+        val clearButtonVisible = Transformations.map(nights) {
+                it?.isNotEmpty()
+        }
+
+        // TODO (07) In onClear(), set the value of _showOnSnackbarEvent to true.
+        private var _showSnackbarEvent = MutableLiveData<Boolean>()
+        val showSnackbarEvent: LiveData<Boolean>
+                get() = _showSnackbarEvent
+
+        fun doneShowingSnackBar() {
+                _showSnackbarEvent.value = false
+        }
+
         private val _navigateToSleepQuality = MutableLiveData<SleepNight>()
 
         val navigateToSleepQuality: LiveData<SleepNight>
